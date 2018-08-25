@@ -1,12 +1,25 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-int xVelocidade= 5;
-int yVelocidade= 1;
+#include <SOIL.h>
 
+int ind=2;
+int xVelocidade= 10;
+int yVelocidade= 2;
+bool noAr= false; //verifica se o jogador está no ar
+bool caindo=false;
+int gravidade=0;
+int queda= 1;
 int xPlayer; int yPlayer; //movimentação do jogador
 
 int xHB1=0; //movimentação X do inimigo 1
 int yHB1=0; //movimentação Y do inimigo 1
+
+void pulo1(){
+if(gravidade < 240){ gravidade= gravidade + 20;}
+if(gravidade > 240 && gravidade < 400){ gravidade= gravidade + 12;}
+if(gravidade > 400 && gravidade < 500){ gravidade= gravidade + 2;}
+if(gravidade== 500){gravidade= 0; caindo= true; noAr= false; }
+}
 
 
 
@@ -36,12 +49,13 @@ void desenhaCena(void)
 
 glColor3f(0, 1, 0);
 //desenha Lhama
+        HitBox(-500, 30+ ind*gravidade, 70, 80);
 
 
 
 
-
-    // Diz ao OpenGL para colocar o que desenhamos na tela
+    if(noAr== 1){ pulo1();} //chama a função que controla o pulo do personagem
+    if(caindo== 1){}
     glFlush();
 }
 
@@ -72,6 +86,10 @@ void teclado(unsigned char key, int x, int y)
       case 27:
          exit(0);
          break;
+      case ' ':
+        noAr=true;
+    glutPostRedisplay();
+        break;
       default:
          break;
    }
@@ -93,7 +111,7 @@ int main(int argc, char **argv)
     glutInitWindowPosition(100, 100);
 
     // Abre a janela
-    glutCreateWindow("Quadrado");
+    glutCreateWindow("Lhamania");
 
     // Registra callbacks para alguns eventos
     glutDisplayFunc(desenhaCena);
