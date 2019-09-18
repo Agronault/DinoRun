@@ -1,0 +1,6 @@
+#ifndef MENU_CREDIT_H_INCLUDED
+#define MENU_CREDIT_H_INCLUDED
+
+
+
+#endif
