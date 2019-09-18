@@ -1,6 +1,8 @@
 # Lhamania
 
+<img src="https://i.imgur.com/AbMgZqF.png" style="float: right">  
 TP1 Computação Gráfica  
+
 Equipe: Alexandre Luis Ribeiro Martins, Thiago Fernandes Dornelles  
 
 # Instruções 
